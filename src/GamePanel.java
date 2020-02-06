@@ -30,7 +30,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
         g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
     	g.setFont(titleFont);
     	g.setColor(Color.PINK);
-    	g.drawString("LEAGUE INVADERS", 25, 10);
+    	g.drawString("LEAGUE INVADERS", 25, 100);
     	g.setFont(startFont);
     	g.setColor(Color.PINK);
     	g.drawString("press ENTER to start", 110, 400);
@@ -112,15 +112,30 @@ repaint();
 		}   
 		if (e.getKeyCode()==KeyEvent.VK_UP&&currentState == GAME) {
 		    System.out.println("UP");
+		    if(rocket.y>0) {
+		    rocket.up();
+		    }
 		}
 		else if (e.getKeyCode()==KeyEvent.VK_DOWN&&currentState == GAME) {
 		    System.out.println("DOWN");
+		    rocket.down();
+		    if(rocket.y>HEIGHT) {
+			    rocket.down();
+			    }
 		}
 		else if (e.getKeyCode()==KeyEvent.VK_LEFT&&currentState == GAME) {
 		    System.out.println("LEFT");
+		    rocket.left();
+		    if(rocket.x>0) {
+			    rocket.left();
+			    }
 		}
 		else if (e.getKeyCode()==KeyEvent.VK_RIGHT&&currentState == GAME) {
 		    System.out.println("RIGHT");
+		    rocket.right();
+		    if(rocket.x>WIDTH) {
+			    rocket.right();
+			    }
 		}
 	}
 	@Override
