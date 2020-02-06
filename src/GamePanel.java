@@ -13,6 +13,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     final int MENU = 0;
     final int GAME = 1;
     final int END = 2;
+    Rocketship rocket = new Rocketship(250, 700, 50, 50);
     Font titleFont;
     Font startFont;
     Font instructionsFont;
@@ -29,7 +30,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
         g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
     	g.setFont(titleFont);
     	g.setColor(Color.PINK);
-    	g.drawString("LEAGUE INVADERS", 25, 100);
+    	g.drawString("LEAGUE INVADERS", 25, 10);
     	g.setFont(startFont);
     	g.setColor(Color.PINK);
     	g.drawString("press ENTER to start", 110, 400);
@@ -40,28 +41,29 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     }
     void drawGameState(Graphics g) { 
     	g.setColor(Color.BLACK);
-    g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT); 
+    g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+    rocket.draw(g);
     }
     void drawEndState(Graphics g)  { 
     	g.setColor(Color.RED);
     	g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
     	g.setFont(GameOverFont);
     	g.setColor(Color.YELLOW);
-    	g.drawString("GAME OVER", 100, 100);
-    	g.setFont(GameOverFont);
+    	g.drawString("GAME OVER", 100, 150);
+    	g.setFont(killedFont);
     	g.setColor(Color.YELLOW);
-    	g.drawString("You killed enemies", 50, 400);
-    	g.setFont(GameOverFont);
+    	g.drawString("You killed enemies", 120, 400);
+    	g.setFont(restartFont);
     	g.setColor(Color.YELLOW);
-    	g.drawString("press ENTER to restart", 50, 550);
+    	g.drawString("press ENTER to restart", 100, 550);
     }
     GamePanel(){
     	  titleFont = new Font("Arial", Font.PLAIN, 48);
     	  startFont = new Font("Arial", Font.PLAIN, 30);
     	  instructionsFont = new Font("Arial", Font.PLAIN, 30);
     	  GameOverFont = new Font("Arial", Font.PLAIN, 50);
-    	  killedFont = new Font("Arial", Font.PLAIN, 20);
-    	  restartFont = new Font("Arial", Font.PLAIN, 20);
+    	  killedFont = new Font("Arial", Font.PLAIN, 30);
+    	  restartFont = new Font("Arial", Font.PLAIN, 30);
     	    frameDraw = new Timer(1000/60,this);
     	    frameDraw.start();
     }
