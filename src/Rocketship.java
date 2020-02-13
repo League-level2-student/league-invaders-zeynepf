@@ -2,12 +2,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Rocketship extends GameObject {
-	int speedx;
-	int speedy;
+	int speed;
+	
 
 	Rocketship(int x, int y, int width, int height) {
 		super(x, y, width, height);
-		speedx = 10;
+		speed=10;
 
 	}
 
@@ -17,37 +17,37 @@ public class Rocketship extends GameObject {
 	}
 
 	public void right() {
-
-	}
-
-	public void left() {
-
-	}
-
-	public void down() {
-
-	}
-
-	public void up() {
-
-	}
-
-	void update() {
-		x += speedx;
+		x += speed;
 		if (x >= LeagueInvaders.WIDTH) {
 			x = LeagueInvaders.WIDTH;
 		}
-		x -= speedx;
+	}
+
+	public void left() {
+		x -= speed;
 		if (x <= 0) {
 			x = 0;
 		}
-		y += speedy;
+	}
+
+	public void down() {
+		y += speed;
 		if (y >= LeagueInvaders.HEIGHT) {
 			y = LeagueInvaders.HEIGHT;
 		}
-		y -= speedy;
+	}
+
+	public void up() {
+		y -= speed;
 		if (y <= 0) {
 			y = 0;
 		}
+	}
+
+	void update() {
+	
+	
+		
+	
 	}
 }
