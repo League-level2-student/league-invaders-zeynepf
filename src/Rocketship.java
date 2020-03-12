@@ -68,14 +68,9 @@ public class Rocketship extends GameObject {
 		}
 	}
 
-	void update() {
-	
-	
-		
-	
-	}
 	
 	public Projectile getProjectile() {
         return new Projectile(x+width/2, y, 10, 10);
+	
 } 
 }
