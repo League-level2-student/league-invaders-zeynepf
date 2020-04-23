@@ -9,6 +9,11 @@ public class ObjectManager implements ActionListener {
 	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	ArrayList<Alien> aliens = new ArrayList<Alien>();
 	Random random = new Random();
+	int score = 0;
+	
+	int getScore() {
+	return score;	
+	}
 
 	void addProjectile(Projectile projectile) {
 		projectiles.add(projectile);
@@ -84,6 +89,7 @@ public class ObjectManager implements ActionListener {
 				if (aliens.get(i).collisionBox.intersects(projectiles.get(j).collisionBox)) {
 					aliens.get(i).isActive = false;
 					projectiles.get(j).isActive = false;
+					score += 1;
 				}
 			}
 		}
