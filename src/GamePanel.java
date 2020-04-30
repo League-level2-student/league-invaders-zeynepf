@@ -15,6 +15,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int MENU = 0;
 	final int GAME = 1;
 	final int END = 2;
+	final int INSTRUCTION = 3;
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
@@ -59,6 +60,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void updateEndState() {
 	}
+	void updateInstructionState() {
+	}
 
 	void drawMenuState(Graphics g) {
 		g.setColor(Color.BLUE);
@@ -74,6 +77,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("press SPACE for instructions", 50, 550);
 
 	}
+
+	void drawInstructionState(Graphics g) {
+		g.setColor(Color.PINK);
+		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+		g.setFont(titleFont);
+		g.setColor(Color.MAGENTA);
+		g.drawString("Instructions", 125,100 );
+		
+	}
+
 
 	void drawGameState(Graphics g) {
 		// g.setColor(Color.BLACK);
@@ -123,7 +136,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void paintComponent(Graphics g) {
 		if (currentState == MENU) {
 			drawMenuState(g);
-		} else if (currentState == GAME) {
+		} else if (currentState == INSTRUCTION) {
+			drawInstructionState(g);}
+		else if (currentState == GAME) {
 			drawGameState(g);
 		} else if (currentState == END) {
 			drawEndState(g);
@@ -136,6 +151,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// TODO Auto-generated method stub
 		if (currentState == MENU) {
 			updateMenuState();
+		}
+		else if (currentState == INSTRUCTION) {
+			updateInstructionState();
 		} else if (currentState == GAME) {
 			updateGameState();
 		} else if (currentState == END) {
@@ -161,7 +179,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				currentState = MENU;
 				rocket=new Rocketship(250, 700, 50, 50);
 				objectManager= new ObjectManager(rocket);
-			} else if (currentState == MENU) {
+			} 
+			else if(currentState ==INSTRUCTION) {
+				currentState = GAME;
+				startGame();
+			}
+			else if (currentState == MENU) {
 				currentState = GAME;
 				startGame();
 			} else if (currentState == GAME) {
@@ -172,6 +195,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE && currentState == GAME) {
 			objectManager.addProjectile(rocket.getProjectile());
 		}
+		if (e.getKeyCode() == KeyEvent.VK_SPACE && currentState == MENU) {
+			currentState = INSTRUCTION;
+		}
+
 
 		if (e.getKeyCode() == KeyEvent.VK_UP && currentState == GAME) {
 			System.out.println("UP");
