@@ -85,8 +85,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Instructions", 125,100 );
 		g.setFont(startFont);
 		g.setColor(Color.BLACK);
-	g.drawString("Use the arrow keys to move ", 50, 250);
-	g.drawString("", x, y);
+	g.drawString("Use the arrowkeys to move.",25, 250);
+	g.drawString("To shoot the aliens hit space.", 25, 300);
+	g.drawString("Don't get hit by the aliens.",25,350);
+	g.drawString("Press enter to play.",25,400);
 	}
 
 
